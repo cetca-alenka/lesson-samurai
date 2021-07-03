@@ -20,5 +20,5 @@ let mapDispatchToProps = (dispatch) => {
     }
   }
 }
-const DialogsContener = connect (mapStateToProps.$inject,mapDispatchToProps)(Dialogs)
+const DialogsContener = connect (mapStateToProps,mapDispatchToProps)(Dialogs)
 export default DialogsContener;

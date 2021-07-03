@@ -20,5 +20,5 @@ let mapDispatchToProps = (dispatch) => {
     }
   }
 }
-const MyPostContener = connect(mapStateToProps.$inject, mapDispatchToProps)(MyPost)
+const MyPostContener = connect(mapStateToProps, mapDispatchToProps)(MyPost)
 export default MyPostContener;

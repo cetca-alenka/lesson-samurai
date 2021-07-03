@@ -5,7 +5,8 @@ import s from './profile.module.css';
 const Profile = (props) =>{
     return <div className={s.content}>
                <ProfileInfo/>
-              <MyPostContener store={props.store} />
+               <MyPostContener/>
+              {/* <MyPostContener store={props.store} /> */}
            </div>     
 }
 export default Profile;
