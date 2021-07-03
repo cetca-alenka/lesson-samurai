@@ -1,0 +1,16 @@
+  .dialog {
+  color: black;
+  }
+  .dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+  }
+  .mes{
+    padding: 10px;
+  }
+  .dialogItem{
+    padding: 10px;
+  }
+  .dialogItem .activ {
+    color: goldenrod;
+  }
