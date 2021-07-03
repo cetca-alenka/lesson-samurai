@@ -1,19 +1,24 @@
 import React from 'react';
 import MyPost from './MyPost';
 import { PCreateAction, TCreateAction } from '../../../redux/profile-reducer';
-const MyPostContener = (props) =>{
-  let state=props.store.getState()
-  let AddPostC= () => {
-        //props.addPost ()  
-        //props.dispatch({type:'ADD-POST'})
-        props.store.dispatch(PCreateAction())
+import { connect } from 'react-redux'
 
+let mapStateToProps = (state) => {
+  return {
+    NewText: state.ProfilePage.NewText,
+    p: state.ProfilePage.PostName
   }
-  let PostChangeC=(NewText)=>{
-    
-      props.store.dispatch(TCreateAction(NewText))
-  }
-    return (<MyPost addPost={AddPostC} postChange={PostChangeC} NewText={state.ProfilePage.NewText} p={state.ProfilePage.PostName}/>)
-          
 }
+let mapDispatchToProps = (dispatch) => {
+  return {
+    addPost: () => {
+      dispatch(PCreateAction())
+
+    },
+    postChange: (NewText) => {
+      dispatch(TCreateAction(NewText))
+    }
+  }
+}
+const MyPostContener = connect(mapStateToProps.$inject, mapDispatchToProps)(MyPost)
 export default MyPostContener;
