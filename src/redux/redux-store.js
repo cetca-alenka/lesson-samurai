@@ -8,4 +8,5 @@ let reducers=combineReducers({
                 SideBar:sidebarReducer
 })
 let store=createStore(reducers)
+window.store=store
 export default store
