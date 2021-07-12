@@ -18,6 +18,12 @@ const Navbar = () =>{
     <div className={s.item}>
       <a >SETTING</a>
     </div>
+    <div className={s.item}>
+      <a >--------------</a>
+    </div>
+    <div className={s.item}>
+    <NavLink to='/users' activeClassName={s.active}>USERS</NavLink>
+    </div>
   </nav>
 }
 export default Navbar;

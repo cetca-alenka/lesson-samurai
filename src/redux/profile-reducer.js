@@ -12,19 +12,19 @@ let initState = {
 }
 const profileReducer = (state = initState, action) => {
         switch (action.type) {
-        case ADDPOST:{
-            let New = {
-                message: state.NewText, like: 0, id: 5
-            }
-            let stateC={...state}
-            stateC.PostName=[...state.PostName]
-            stateC.PostName.push(New)
-            stateC.NewText = ''
-            return stateC}
-        case ADDTEXT:{
-            let stateC={...state}
-            stateC.NewText = action.NewText
-            return stateC}
+        case ADDPOST:
+            //{            let New = {
+            //     message: state.NewText, like: 0, id: 5
+            // }
+            // let stateC={...state}
+            // stateC.PostName=[...state.PostName]
+            // stateC.PostName.push(New)
+            // stateC.NewText = ''
+            return {...state, NewText:'',PostName:[...state.PostName,{message: state.NewText, like: 0, id: 5}]}
+        case ADDTEXT:
+            //let stateC={...state}
+            //stateC.NewText = action.NewText
+            return {...state, NewText:action.NewText}
         default:
             return state
     }

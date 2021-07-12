@@ -17,18 +17,18 @@ let initState = {
     ]
 }
 const dialogReducer = (state = initState, action) => {
-    let stateC={...state}
+    //let stateC={...state}
     switch (action.type) {
                 case ADDMES:
-            let New = {
-                mes: state.MNewText, id: 6
-            }
-            stateC.MesData.push(New)
-            stateC.MNewText = ''
-            return stateC
+            // let New = {
+            //     mes: state.MNewText, id: 6
+            // }
+            // stateC.MesData.push(New)
+            // stateC.MNewText = ''
+            return {...state, MNewText:'', MesData:[...state.MesData,{mes: state.MNewText, id: 6}]}
         case ADDMEST:
-            stateC.MNewText = action.MNewText
-            return stateC
+            //stateC.MNewText = action.MNewText
+            return {...state,MNewText:action.MNewText}
         default:
             return state
     }
