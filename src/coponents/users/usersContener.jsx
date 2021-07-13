@@ -1,5 +1,5 @@
 import React from 'react';
-import Users from './users';
+import Users from './usersC';
 import { connect } from 'react-redux'
 import { yesAC, noAC, usAC } from '../../redux/users-reducer';
 
