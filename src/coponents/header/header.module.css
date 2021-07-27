@@ -5,3 +5,9 @@
     .header img {
     width: 60px;
     }
+    .logblok{
+float: right;
+    }
+    .logblok a{
+        color: black;
+    }

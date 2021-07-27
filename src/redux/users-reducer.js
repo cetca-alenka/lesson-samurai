@@ -3,11 +3,13 @@ const NOFR = 'NO-FR'
 const SETUSER = 'S-USER'
 const SPAGE = 'S-PAGE'
 const USERT = 'T-USER'
+const PREL = 'PRE-L'
 let initState = {
     Users: [],
     pageSize: 5,
     totalUser: 0,
-    currentP: 1
+    currentP: 1,
+    isSet:false
 }
 const usersReducer = (state = initState, action) => {
     //let stateC={...state}
@@ -47,14 +49,20 @@ const usersReducer = (state = initState, action) => {
                 ...state, totalUser: action.count
 
             }
+            case PREL:
+            return {
+                ...state, isSet: action.isSet
+
+            }
         default:
             return state
     }
 }
-export const yesAC = (userId) => ({ type: YESFR, userId })
-export const noAC = (userId) => ({ type: NOFR, userId })
-export const usAC = (user) => ({ type: SETUSER, user })
-export const pageAC = (currentP) => ({ type: SPAGE, currentP })
-export const ustotalAC = (totalUser) => ({ type: USERT, count:totalUser })
+export const yesF = (userId) => ({ type: YESFR, userId })
+export const noF = (userId) => ({ type: NOFR, userId })
+export const usSET = (user) => ({ type: SETUSER, user })
+export const setP = (currentP) => ({ type: SPAGE, currentP })
+export const ustotalSET = (totalUser) => ({ type: USERT, count:totalUser })
+export const readS = (isSet) => ({ type: PREL, isSet })
 
 export default usersReducer
