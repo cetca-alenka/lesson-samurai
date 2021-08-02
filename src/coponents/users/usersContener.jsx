@@ -4,29 +4,32 @@ import * as axios from 'axios'
 import { connect } from 'react-redux'
 import preL from '../../img/loader.gif'
 import Preloader from '../common/preloader/preloader.jsx'
-import { yesF, noF, usSET, setP, ustotalSET, readS } from '../../redux/users-reducer';
+import { yesF, noF, usSET, setP, ustotalSET, readS, readPr, getUsers, follow, unfollow } from '../../redux/users-reducer';
+import { userAPI } from '../../api/api';
 
 class UsersComponent extends React.Component {
 
 
   componentDidMount() {
     alert('NEW')
-    this.props.readS(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentP}&count=${this.props.pageSize}`).then(response => {
-      this.props.readS(false)
-      this.props.usSET(response.data.items)
-      this.props.ustotalSET(response.data.totalCount)
+    this.props.getUsers(this.props.currentP,this.props.pageSize)
+    // this.props.readS(true)
+    // userAPI.getUsers(this.props.currentP,this.props.pageSize).then(data => {
+    //   this.props.readS(false)
+    //   this.props.usSET(data.items)
+    //   this.props.ustotalSET(data.totalCount)
 
-    })
+    // })
   }
   pageCh = (page) => {
     this.props.setP(page)
-    this.props.readS(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then(response => {
-      this.props.readS(false)
-      this.props.usSET(response.data.items)
+    this.props.getUsers(page,this.props.pageSize)
+    // this.props.readS(true)
+    // userAPI.getUsers(page,this.props.pageSize).then(data => {
+    //   this.props.readS(false)
+    //   this.props.usSET(data.items)
 
-    })
+    // })
 
 
   }
@@ -43,8 +46,10 @@ class UsersComponent extends React.Component {
         stateU={this.props.stateU}
         yesF={this.props.yesF}
         noF={this.props.noF}
-
-
+        readPr={this.props.readPr}
+        Progress={this.props.Progress}
+        follow={this.props.follow}
+        unfollow={this.props.unfollow}
       />
     </>
   }
@@ -56,7 +61,8 @@ let mapStateToProps = (state) => {
     pageSize: state.UsersPage.pageSize,
     totalUser: state.UsersPage.totalUser,
     currentP: state.UsersPage.currentP,
-    isSet: state.UsersPage.isSet
+    isSet: state.UsersPage.isSet,
+    Progress: state.UsersPage.Progress
   }
 }
 // let mapDispatchToProps = (dispatch) => {
@@ -82,5 +88,5 @@ let mapStateToProps = (state) => {
 //     },
 //   }
 // }
-const UsersContener = connect(mapStateToProps, {yesF, noF,usSET,setP,ustotalSET,readS})(UsersComponent)
+const UsersContener = connect(mapStateToProps, {yesF, noF,usSET,setP,ustotalSET,readS, readPr, getUsers, follow, unfollow})(UsersComponent)
 export default UsersContener;

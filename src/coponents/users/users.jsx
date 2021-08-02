@@ -2,6 +2,8 @@ import React from 'react'
 import s from './users.module.css'
 import uFoto from '../../img/foto.jpg'
 import { NavLink } from 'react-router-dom'
+import * as axios from 'axios';
+import { userAPI } from '../../api/api';
 
 let Users = (props) => {
     let pageN = Math.ceil(props.totalUser / props.pageSize)
@@ -23,15 +25,36 @@ let Users = (props) => {
             props.stateU.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <NavLink to={'/profile/'+u.id}>
-                        <img src={u.photos.small != null ? u.photos.small : uFoto} className={s.ava} />
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small != null ? u.photos.small : uFoto} className={s.ava} />
                         </NavLink>
                     </div>
                     <div>
                         {
                             u.followed
-                                ? <button onClick={() => { props.yesF(u.id) }}>YES FRENDS</button>
-                                : <button onClick={() => { props.noF(u.id) }}> NO FRENDS</button>
+                                ? <button disabled={props.Progress.some(id=>id===u.id)} onClick={() => {
+                                    props.follow(u.id)
+                                    // props.readPr(true,u.id)
+                                    // userAPI.getFollow(u.id).then(data => {
+                                    //     if (data.resultCode == 0) {
+                                    //         props.yesF(u.id)
+
+                                    //     }
+                                        
+                                    //     props.readPr(false,u.id)
+                                    // })
+                                }}>YES FRENDS</button>
+                                : <button disabled={props.Progress.some(id=>id===u.id)} onClick={() => {
+                                    props.unfollow(u.id)
+                                    // props.readPr(true,u.id)
+                                    // userAPI.noFollow(u.id).then(data => {
+                                    //     if (data.resultCode == 0) {
+                                    //         props.noF(u.id)
+
+                                    //     }
+                                    //     props.readPr(false,u.id)
+                                    // })
+                                }}> NO FRENDS</button>
                         }
                     </div>
                 </span>
